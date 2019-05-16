@@ -59,6 +59,7 @@ namespace Outliner
                     }
                 }
 
+                UpdateShownImage(SensitivitySlider.Value);
             }
             else
             {
@@ -90,7 +91,6 @@ namespace Outliner
             g = g / n;
             b = b / n;
             return Color.FromArgb(r, g, b);
-
         }
 
         int ColorDifference(Color _color1, Color _color2)
@@ -128,6 +128,16 @@ namespace Outliner
         private void SensitivitySlider_MouseCaptureChanged(object sender, EventArgs e)
         {
             UpdateShownImage(SensitivitySlider.Value);
+        }
+
+        private void SaveImageButton_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            
+            if(saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                generatedPicture.Save(saveFileDialog.FileName);
+            }
         }
     }
 
