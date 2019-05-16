@@ -44,11 +44,13 @@
             // 
             // SensitivitySlider
             // 
-            this.SensitivitySlider.Location = new System.Drawing.Point(471, 311);
+            this.SensitivitySlider.Location = new System.Drawing.Point(270, 311);
+            this.SensitivitySlider.Maximum = 765;
             this.SensitivitySlider.Name = "SensitivitySlider";
-            this.SensitivitySlider.Size = new System.Drawing.Size(253, 45);
+            this.SensitivitySlider.Size = new System.Drawing.Size(454, 45);
             this.SensitivitySlider.TabIndex = 1;
             this.SensitivitySlider.ValueChanged += new System.EventHandler(this.SensitivitySlider_ValueChanged);
+            this.SensitivitySlider.MouseCaptureChanged += new System.EventHandler(this.SensitivitySlider_MouseCaptureChanged);
             // 
             // Form1
             // 

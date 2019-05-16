@@ -98,7 +98,7 @@ namespace Outliner
             return _color1.R - _color2.R + _color1.B - _color2.B + _color1.G - _color2.G;
         }
 
-        void UpdateShownImage(int _value)
+        void UpdateShownImage(int _differenceValue)
         {
             generatedPicture = new Bitmap(selectedImage);
 
@@ -106,7 +106,14 @@ namespace Outliner
             {
                 for (int y = 0; y < selectedImage.Size.Height; y++)
                 {
-
+                    if (pixelInfos[x, y].pixelDifference < _differenceValue)
+                    {
+                        generatedPicture.SetPixel(x, y, Color.White);
+                    }
+                    else
+                    {
+                        generatedPicture.SetPixel(x, y, Color.Black);
+                    }
                 }
             }
 
@@ -114,6 +121,11 @@ namespace Outliner
         }
 
         private void SensitivitySlider_ValueChanged(object sender, EventArgs e)
+        {
+            UpdateShownImage(SensitivitySlider.Value);
+        }
+
+        private void SensitivitySlider_MouseCaptureChanged(object sender, EventArgs e)
         {
             UpdateShownImage(SensitivitySlider.Value);
         }
