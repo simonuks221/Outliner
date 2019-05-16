@@ -48,6 +48,7 @@
             this.SensitivitySlider.Name = "SensitivitySlider";
             this.SensitivitySlider.Size = new System.Drawing.Size(253, 45);
             this.SensitivitySlider.TabIndex = 1;
+            this.SensitivitySlider.ValueChanged += new System.EventHandler(this.SensitivitySlider_ValueChanged);
             // 
             // Form1
             // 
