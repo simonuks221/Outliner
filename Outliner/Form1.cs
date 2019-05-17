@@ -40,7 +40,7 @@ namespace Outliner
             }
 
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Title = "Open image";
+            openFileDialog.Title = "Open image"; 
             openFileDialog.FileName = "Image files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png) | *.jpg; *.jpeg; *.jpe; *.jfif; *.png";
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
