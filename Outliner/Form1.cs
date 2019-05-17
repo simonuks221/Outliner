@@ -27,7 +27,21 @@ namespace Outliner
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            
+        }
+
+
+        void OpenNewImage()
+        {
+            MainPictureBox.Image = null;
+            if (selectedImage != null)
+            {
+                selectedImage.Dispose();
+            }
+
             OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Title = "Open image";
+            openFileDialog.FileName = "Image files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png) | *.jpg; *.jpeg; *.jpe; *.jfif; *.png";
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
@@ -58,15 +72,17 @@ namespace Outliner
                         pixelInfos[x, y].pixelDifference = ColorDifference(pixelInfos[x, y].pixelColor, avarageNeighbourColor);
                     }
                 }
-
                 UpdateShownImage(SensitivitySlider.Value);
-            }
-            else
-            {
-                throw new Exception("Selected nothing or other exeption");
-            }
-        }
 
+                reader.Dispose();
+                bitmap.Dispose();
+            }
+            else //Nothing selected
+            {
+
+            }
+            openFileDialog.Dispose();
+        }
 
         Color GetAvarageNeighbourColor(Point _pixelLocation)
         {
@@ -100,24 +116,25 @@ namespace Outliner
 
         void UpdateShownImage(int _differenceValue)
         {
-            generatedPicture = new Bitmap(selectedImage);
+            if(selectedImage != null){
+                generatedPicture = new Bitmap(selectedImage);
 
-            for (int x = 0; x < selectedImage.Size.Width; x++)
-            {
-                for (int y = 0; y < selectedImage.Size.Height; y++)
+                for (int x = 0; x < selectedImage.Size.Width; x++)
                 {
-                    if (pixelInfos[x, y].pixelDifference < _differenceValue)
+                    for (int y = 0; y < selectedImage.Size.Height; y++)
                     {
-                        generatedPicture.SetPixel(x, y, Color.White);
-                    }
-                    else
-                    {
-                        generatedPicture.SetPixel(x, y, Color.Black);
+                        if (pixelInfos[x, y].pixelDifference < _differenceValue)
+                        {
+                            generatedPicture.SetPixel(x, y, Color.White);
+                        }
+                        else
+                        {
+                            generatedPicture.SetPixel(x, y, Color.Black);
+                        }
                     }
                 }
+                MainPictureBox.Image = generatedPicture;
             }
-
-            MainPictureBox.Image = generatedPicture;
         }
 
         private void SensitivitySlider_ValueChanged(object sender, EventArgs e)
@@ -130,14 +147,27 @@ namespace Outliner
             UpdateShownImage(SensitivitySlider.Value);
         }
 
-        private void SaveImageButton_Click(object sender, EventArgs e)
+
+        private void MenuItemSaveAs_Click(object sender, EventArgs e)
         {
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            
-            if(saveFileDialog.ShowDialog() == DialogResult.OK)
+            if (selectedImage != null)
             {
-                generatedPicture.Save(saveFileDialog.FileName);
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.Title = "Save image";
+                saveFileDialog.Filter = "JPG Files (.jpg, .jpeg, .jpe)| *.jpg, *.jpeg, *.jpe| PNG files (.png)| *.png | JPEG Files (.JPEG)| *.JPEG | GIF Files (.GIF)| *.GIF";
+                saveFileDialog.FileName = "New image";
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    generatedPicture.Save(saveFileDialog.FileName);
+                }
+                saveFileDialog.Dispose();
             }
+        }
+
+        private void MenuItemOpenNew_Click(object sender, EventArgs e)
+        {
+            OpenNewImage();
         }
     }
 

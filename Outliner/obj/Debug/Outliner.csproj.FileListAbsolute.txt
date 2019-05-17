@@ -1,0 +1,10 @@
+C:\Users\11\Desktop\Outliner-master\Outliner\bin\Debug\Outliner.exe.config
+C:\Users\11\Desktop\Outliner-master\Outliner\bin\Debug\Outliner.exe
+C:\Users\11\Desktop\Outliner-master\Outliner\bin\Debug\Outliner.pdb
+C:\Users\11\Desktop\Outliner-master\Outliner\obj\Debug\Outliner.csprojAssemblyReference.cache
+C:\Users\11\Desktop\Outliner-master\Outliner\obj\Debug\Outliner.Form1.resources
+C:\Users\11\Desktop\Outliner-master\Outliner\obj\Debug\Outliner.Properties.Resources.resources
+C:\Users\11\Desktop\Outliner-master\Outliner\obj\Debug\Outliner.csproj.GenerateResource.cache
+C:\Users\11\Desktop\Outliner-master\Outliner\obj\Debug\Outliner.csproj.CoreCompileInputs.cache
+C:\Users\11\Desktop\Outliner-master\Outliner\obj\Debug\Outliner.exe
+C:\Users\11\Desktop\Outliner-master\Outliner\obj\Debug\Outliner.pdb
